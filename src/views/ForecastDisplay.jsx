@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Title, { Subtitle } from "../components/Title";
+import { Subtitle } from "../components/Title";
 import RemainingWeekDisplay from "./RemainingWeekDisplay";
 import { tempConverter } from "../utils/parsers";
 import Icon from "../components/WeatherIcon";
@@ -24,13 +24,13 @@ const ForecastDisplay = ({ forecast }) => {
   week.length = 4;
   return (
     <ForecastContainer>
-      <Subtitle>
+      <Subtitle testid>
         <span>Forecast for</span> today
       </Subtitle>
       <DayWrapper>
-        <Icon status={forecast.current.weather[0].main} />
-        <Subtitle>{forecast.current.weather[0].main}</Subtitle>
-        <Subtitle>
+        <Icon status={forecast.current.weather[0].main} testid="icon" />
+        <Subtitle testid="main">{forecast.current.weather[0].main}</Subtitle>
+        <Subtitle testid="temp">
           <span>
             {tempConverter(forecast.current.temp)}
             <sup>C°</sup>
@@ -41,8 +41,12 @@ const ForecastDisplay = ({ forecast }) => {
         <Subtitle fontSize="1.6rem" w100>
           Tomorrow:
         </Subtitle>
-        <Icon size="4rem" status={forecast.daily[1].weather[0].main} />
-        <Subtitle fontSize="1.6rem">
+        <Icon
+          size="4rem"
+          status={forecast.daily[1].weather[0].main}
+          testid="icon"
+        />
+        <Subtitle fontSize="1.6rem" testid="temp">
           <span>
             {tempConverter(forecast.daily[1].temp.day)}
             <sup>C°</sup>

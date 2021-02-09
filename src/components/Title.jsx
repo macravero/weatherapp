@@ -24,26 +24,35 @@ const StyledSubheading = styled.h2`
     }
   }
 `;
-export const Subtitle = ({ fontSize, color, supSize, w100, children }) => {
+export const Subtitle = ({
+  fontSize,
+  color,
+  supSize,
+  w100,
+  children,
+  testid,
+}) => {
   return (
     <StyledSubheading
       fontSize={fontSize}
       supSize={supSize}
       color={color}
       w100={w100}
+      data-testid={testid}
     >
       {children}
     </StyledSubheading>
   );
 };
 
-const Title = ({ fontSize, color, supSize, w100, children }) => {
+const Title = ({ fontSize, color, supSize, w100, children, testid }) => {
   return (
     <StyledHeading
       fontSize={fontSize}
       supSize={supSize}
       color={color}
       w100={w100}
+      data-testid={testid}
     >
       {children}
     </StyledHeading>

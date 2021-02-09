@@ -16,21 +16,21 @@ import { IconContext } from "react-icons";
 import { withTheme } from "styled-components";
 
 const iconObject = {
-  Thunderstorm: <WiThunderstorm />,
-  Drizzle: <WiSprinkle />,
-  Rain: <WiRain />,
-  Snow: <WiSnow />,
-  Mist: <WiDayFog />,
-  Smoke: <WiSmoke />,
-  Haze: <WiDayHaze />,
-  Dust: <WiDust />,
-  Fog: <WiDayFog />,
-  Sand: <WiSandstorm />,
-  Ash: <WiDayFog />,
-  Squall: <WiSandstorm />,
-  Tornado: <WiTornado />,
-  Clear: <WiDaySunny />,
-  Clouds: <WiCloudy />,
+  Thunderstorm: <WiThunderstorm title="Thunderstorm" />,
+  Drizzle: <WiSprinkle title="Drizzle" />,
+  Rain: <WiRain title="Rain" />,
+  Snow: <WiSnow title="Snow" />,
+  Mist: <WiDayFog title="Mist" />,
+  Smoke: <WiSmoke title="Smoke" />,
+  Haze: <WiDayHaze title="Haze" />,
+  Dust: <WiDust title="Dust" />,
+  Fog: <WiDayFog title="Fog" />,
+  Sand: <WiSandstorm title="Sand" />,
+  Ash: <WiDayFog title="Ash" />,
+  Squall: <WiSandstorm title="Squall" />,
+  Tornado: <WiTornado title="Tornado" />,
+  Clear: <WiDaySunny title="Clear" />,
+  Clouds: <WiCloudy title="Clouds" />,
 };
 const Icon = ({ status, size, theme }) => {
   return (

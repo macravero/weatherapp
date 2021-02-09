@@ -9,7 +9,7 @@ import {
   setLocation,
 } from "../contexts/Location/LocationAction";
 
-const CitySelector = () => {
+const CityListDisplay = () => {
   const [locationState, locationDispatch] = useLocation();
   const { location, locationList, loading } = locationState;
 
@@ -47,4 +47,4 @@ const CitySelector = () => {
   );
 };
 
-export default CitySelector;
+export default CityListDisplay;
