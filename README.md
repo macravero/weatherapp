@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Weatherapp para challenge FrontEnd
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Proyecto bootstrapeado con Create-react-app, basándome en la consigna de full client side application.
 
-## Available Scripts
+La aplicación presenta dos vistas, la de ciudades en la izquierda, y la del clima en la derecha. La primera, tiene una lista de botones que representan cada ciudad, y reciben dinámicamente la localización actual del usuario para setearla como primer botón. La segunda vista representa el clima actual en detalle, el clima del día siguiente, y un pronóstico de los próximos cuatro días, como requerido en el ejercicio.
 
-In the project directory, you can run:
+La Api de geolocalización utilizada es la brindada en el ejercicio, [ip-api](https://ip-api.com/), combinada con la [one call api](https://openweathermap.org/api/one-call-api) para detectar la ubicación actual del usuario mediante latitud y longitud. La api key está almacenada en un .env público sólo por razones de testeo del ejercicio, y en producción debería desacoplarse por motivos de seguridad.
 
-### `yarn start`
+Los íconos utilizados son de la librería [React Icons](https://react-icons.github.io/react-icons/) y se renderizan respecto a las keys provistas por los posibles estados de clima de la api de [Open Weather Map](https://openweathermap.org/api).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+La aplicación cuenta con un contexto que se encarga de contener y actualizar la location(posición geográfica del usuario), ya sea detectando la IP en el primer render, o accediendo a su actualización através de acciones del useReducer hook. Al actualizarse la location, un useEffect dentro de la vista de clima dispara la nueva request para recibir datos de forecast. Esto sucede si se detecta location en el primer render. Sinó muestra un mensaje de error y pide seleccionar otra ciudad de la lista (prepoblada).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Para el maquetado, se utilizó [styled components](https://styled-components.com/) con un theme provider para permitir controlar mejor los estilos de la aplicación a futuro. Dentro del theme, se pueden modificar las propiedades del objeto y éstas van a propagar a todos los componentes que las estén consumiendo. También se declaró un globalStyle sencillo que funcionó como CSS reset.
 
-### `yarn test`
+Para parsear los días en la respuesta, se creó una función utilitaria que recibe el dato de datetime(dt) y lo multiplica por mil, para luego generar un nuevo objeto Fecha con la función new Date. Esto es posible porque el dato es una Unix timestamp.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para las requests y manejo de errores, se utilizó Axios. En el archivo de `Constants` se exportan dos configuraciones instanciadas de las requests, donde se pueden modificar los timeouts o las mismas direcciones de ser necesario a futuro. También se utilizó [react-error-boundary](https://www.npmjs.com/package/react-error-boundary) para brindarle un wrapper de control de errores a las vistas. Tomar en cuenta que create-react-app viene con un error boundary propio que tapa la pantalla. Se creo un componente básico como error fallback.
 
-### `yarn build`
+Se inició el testeo de algunos componentes con React Testing Library, pero es un work in progress y un faltante.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Inicialización y uso
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para utilizar la aplicación, es necesario instalar las dependencias con `yarn install`. Luego, se puede correr local con `yarn start`. Se puede generar una versión para producción con `yarn build`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+En el inicio, los componentes de la aplicación estarán en modo loading, ya que la botonera está esperando la respuesta al intento de detectar la ciudad y el forecast aún no recibe location. Al finalizar la request, el usuarió podrá ver en la vista derecha el clima de su geolocalización actual o, en caso de haber un problema con la detección, un mensaje que le indique elegir otra ciudad de la lista.
 
-### `yarn eject`
+Al apretar un botón con otra ciudad, el usuario verá una animación de carga importada de [react-loading](https://www.npmjs.com/package/react-loading) mientras se resuelve la request para recibir los datos de forecast.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Tech debt
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Detalles mayores:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+El plan inicial era tener una versión funcional con suficiente tiempo para planificar <strong>un refactor hacia TypeScript</strong>, y está sin terminar. Decidí entregar la versión funcional de la app para no extender el proceso, pero es un work in progress.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+El testeo unitario está muy flojo por cuestiones de tiempos, y debería mejorarlo o al menos poner más ejemplos de casos de coverage.
 
-## Learn More
+No estoy realizando ningún tipo de data caching, al menos si el clima es idéntico en una franja de tiempo determinado.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Otros detalles:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+La estructura final de HTML podría mejorar mucho, para pulir tanto accesibilidad como SEO.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Se puede mejorar la forma de importar componentes y files, así como aprovechar ciertas características de styled components para hacer más componentes reutilizables que requieran menos configuración repetitiva.
