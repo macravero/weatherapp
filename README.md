@@ -41,3 +41,9 @@ No estoy realizando ningún tipo de data caching, al menos si el clima es idént
 La estructura final de HTML podría mejorar mucho, para pulir tanto accesibilidad como SEO.
 
 Se puede mejorar la forma de importar componentes y files, así como aprovechar ciertas características de styled components para hacer más componentes reutilizables que requieran menos configuración repetitiva.
+
+## [09/02/2021] Tech debt updates
+
+Hay mas casos de ejemplo de testeo unitario y se mejoraron algunos componentes para recibir testids por props (es un caso especial hacerlo con styled components). Hipoteticamente ayudaría con testeos e2e.
+
+Se mejoró la accesibilidad general de la aplicación a nivel keyboard access y element roles.
