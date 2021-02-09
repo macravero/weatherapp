@@ -62,7 +62,7 @@ const WeatherDisplay = ({ theme }) => {
   } else if (status === "rejected") {
     return (
       <WeatherWrapper>
-        <Title fontSize="1.6rem">
+        <Title fontSize="1.6rem" color={theme.colors.main}>
           There was an error getting the forecast info. Try another city
         </Title>
       </WeatherWrapper>
@@ -70,13 +70,8 @@ const WeatherDisplay = ({ theme }) => {
   } else {
     return (
       <WeatherWrapper background={CurrentLocationBackground}>
-        <Title fontSize="2.4rem" color="white">
-          {location.name}
-        </Title>
-        <ForecastDisplay
-          forecast={forecast}
-          style={{ backgroundColor: "green" }}
-        />
+        <Title>{location.name}</Title>
+        <ForecastDisplay forecast={forecast} />
       </WeatherWrapper>
     );
   }

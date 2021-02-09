@@ -7,13 +7,13 @@ const theme = {
     warning: "#E8E3A2",
     success: "#2B916A",
     appBackground: "#EAEAEC",
-    citySelectorBackground: "white",
+    white: "white",
   },
   fontSizes: {
     small: "1rem",
     medium: "1.6rem",
-    large: "2.4rem",
-    xlarge: "3.3rem",
+    large: "2rem",
+    xlarge: "2.6rem",
   },
   sizes: {
     buttonWidth: "200px",

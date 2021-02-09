@@ -21,10 +21,13 @@ const StyledButton = styled.button`
     background: ${(props) => props.theme.colors.success};
     border: ${(props) => props.theme.colors.active};
   }
+  &:focus {
+    outline: red auto 2px;
+  }
 `;
 const Button = ({ onClick, active, children }) => {
   return (
-    <StyledButton onClick={onClick} active={active}>
+    <StyledButton onClick={onClick} active={active} role="button">
       {children}
     </StyledButton>
   );

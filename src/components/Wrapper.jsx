@@ -8,7 +8,7 @@ export const StyledWrapper = styled.section`
   flex-wrap: wrap;
   flex-grow: ${(props) => props.grow || 1};
   min-width: 300px;
-  background: ${(props) => props.theme.colors.citySelectorBackground};
+  background: ${(props) => props.theme.colors.white};
   background-image: ${(props) => props.bgImage};
   padding: ${(props) => props.theme.paddings.wrapperPadding};
 `;
